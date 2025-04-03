@@ -378,6 +378,7 @@ bool SpinnakerWrapperImpl::initCamera(const std::string & serialNumber)
     return false;
   }
   const auto interfaceList = system_->GetInterfaces();
+  std::vector<std::string> failedInterfaces;
 
   for (size_t i = 0; i < interfaceList.GetSize(); i++) {
     const auto iface = interfaceList.GetByIndex(i);
@@ -387,7 +388,6 @@ bool SpinnakerWrapperImpl::initCamera(const std::string & serialNumber)
     if (IsAvailable(ptrInterfaceType) && IsReadable(ptrInterfaceType)) {
       const Spinnaker::GenApi::CStringPtr ptrInterfaceDisplayName =
         nodeMapInterface.GetNode("InterfaceDisplayName");
-
       if (IsAvailable(ptrInterfaceDisplayName) && IsReadable(ptrInterfaceDisplayName)) {
         const auto interfaceDisplayName = ptrInterfaceDisplayName->GetValue();
         const auto camList = iface->GetCameras();
@@ -404,6 +404,7 @@ bool SpinnakerWrapperImpl::initCamera(const std::string & serialNumber)
               camera_ = ptrCam;
               return (true);
             } catch (Spinnaker::Exception & e) {
+              failedInterfaces.push_back(interfaceDisplayName.c_str());
               // error while open the cameras in this interface
               ptrCam->DeInit();
             }
@@ -412,6 +413,12 @@ bool SpinnakerWrapperImpl::initCamera(const std::string & serialNumber)
       } else {
         LOG_ERROR("Unknown Interface (Display name not readable)");
       }
+    }
+  }
+  if (!camera_) {
+    LOG_ERROR("Could not initialize camera on any interface!");
+    for (const auto & iface : failedInterfaces) {
+      LOG_ERROR("failed attempt on interface: " << iface);
     }
   }
   return (camera_ != 0);
