@@ -377,6 +377,16 @@ Troubleshooting/Common Issues
    Switch to Bayer images to reduce network bandwidth by a factor of three.
    Check your exposure time. The frame rate cannot exceed the inverse of the exposure time.
 
+6) GigE camera cannot be initialized:
+
+.. code::
+   [19074765]: found camera with serial number: 19074765
+   [Spinnaker Wrapper]: Could not initialize camera on any interface!
+   [Spinnaker Wrapper]: failed attempt on interface: GEV Interface 1
+
+   Either the IP address of your camera is out-of-network (switch it to
+   DHCP using SpinView) or another application (SpinView?) is
+   currently using the camera.
 
 Setting up Linux without Spinnaker SDK
 ======================================
