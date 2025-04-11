@@ -151,9 +151,9 @@ void SpinnakerWrapperImpl::refreshCameraList()
         }  // end for camList
       } else {
         LOG_ERROR("Unknown Interface (Display name not readable)");
-      }  // end if-else ptrInterfaceDisplayName
-    }    // end if ptrInterfaceType
-  }      // end for interfaceList
+      }
+    }
+  }
 
   interfaceList.Clear();
 #endif
