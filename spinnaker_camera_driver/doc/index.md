@@ -1,9 +1,5 @@
 # Spinnaker ROS2 Camera Driver
 
-.. toctree::
-   :maxdepth: 2
-
-
 This package provides a ROS2 driver for Teledyne/FLIR cameras using the [Spinnaker SDK](http://softwareservices.flir.com/Spinnaker/latest/index.html). For hardware-synchronized cameras use the Spinnaker synchronized camera driver by following the link from the [flir driver repository](https://github.com/ros-drivers/flir_camera_driver).
 
 > [!NOTE]
@@ -215,7 +211,7 @@ The hard part is often finding the node name, in the last example ``"DigitalIOCo
 
 > [!WARNING]
 > 
-> !!!! THE ORDER OF PARAMETER DEFINITION MATTERS !!!!
+> THE ORDER OF PARAMETER DEFINITION MATTERS
 
 On node startup, the parameters will be declared and initialized in the order listed in the yaml file. For instance you must list the enum ``exposure_auto`` before the float ``exposure_time`` because on startup, ``exposure_auto`` must first be set to ``Off`` before ``exposure_time`` can be set, or else the camera refuses to set the exposure time.
 
