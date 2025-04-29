@@ -31,7 +31,7 @@ A camera driver supporting USB3 and GIGE cameras that has been successfully used
 
 ## Spinnaker synchronized camera driver
 
-Based on the spinnaker_camera_driver package, this driver is specifically designed for cameras that are hardware triggered by an external pulse. Images triggered by the same external pulse will have identical ROS header time stamps. See the [spinnaker_synchronized_camera_driver](spinnaker_synchronized_camera_driver/doc/index.rst) for more.
+Based on the spinnaker_camera_driver package, this driver is specifically designed for cameras that are hardware triggered by an external pulse. Images triggered by the same external pulse will have identical ROS header time stamps. See the [spinnaker_synchronized_camera_driver](spinnaker_synchronized_camera_driver/doc/index.md) for more.
 
 <a href="https://build.ros2.org/job/Hbin_uJ64__spinnaker_synchronized_camera_driver__ubuntu_jammy_amd64__binary/">
    <img src="https://build.ros2.org/buildStatus/icon?job=Hbin_uJ64__spinnaker_synchronized_camera_driver__ubuntu_jammy_amd64__binary&subject=Humble" />
@@ -45,7 +45,7 @@ Based on the spinnaker_camera_driver package, this driver is specifically design
 <a href="https://build.ros2.org/job/Rbin_uN64__spinnaker_synchronized_camera_driver__ubuntu_noble_amd64__binary/">
    <img src="https://build.ros2.org/buildStatus/icon?job=Rbin_uN64__spinnaker_synchronized_camera_driver__ubuntu_noble_amd64__binary&subject=Rolling" />
 </a>
-            
+
 ## FLIR camera description
 
 Package with [meshes and urdf](flir_camera_description/README.md) files.
@@ -65,7 +65,7 @@ Package with [meshes and urdf](flir_camera_description/README.md) files.
 
 ## FLIR camera messages
 
-Package with with [image exposure and control messages](flir_camera_msgs/README.md). These are used by the [spinnaker_camera_driver](spinnaker_camera_driver/doc/index.rst).
+Package with with [image exposure and control messages](flir_camera_msgs/README.md). These are used by the [spinnaker_camera_driver](spinnaker_camera_driver/doc/index.md).
 
 <a href="https://build.ros2.org/job/Hbin_uJ64__flir_camera_msgs__ubuntu_jammy_amd64__binary/">
    <img src="https://build.ros2.org/buildStatus/icon?job=Hbin_uJ64__flir_camera_msgs__ubuntu_jammy_amd64__binary&subject=Humble" />

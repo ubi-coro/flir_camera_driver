@@ -12,18 +12,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-#
 
+"""
+Example file for two Blackfly S cameras that are *externally triggered*, i.e
+you must provide an external hardware synchronization pulse to both cameras!
 
-#
-# Example file for two Blackfly S cameras that are *externally triggered*, i.e
-# you must provide an external hardware synchronization pulse to both cameras!
-#
-# One of them creates a master controller, the other one a follower. The exposure
-# parameters are determined by the master. This is a useful setup for e.g. a
-# synchronized stereo camera.
-#
+One of them creates a master controller, the other one a follower. The exposure
+parameters are determined by the master. This is a useful setup for e.g. a
+synchronized stereo camera.
+"""
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument as LaunchArg
@@ -44,8 +41,8 @@ exposure_controller_parameters = {
     'brightness_tolerance': 20,  # when to update exposure/gain
     # watch that max_exposure_time is short enough
     # to support the trigger frame rate!
-    'max_exposure_time': 15000,  # usec
-    'min_exposure_time': 5000,  # usec
+    'max_exposure_time': 15000,  # µsec
+    'min_exposure_time': 5000,  # µsec
     'max_gain': 29.9,
     'gain_priority': False,
 }
@@ -83,7 +80,7 @@ def make_parameters(context):
     pd = LaunchConfig('camera_parameter_directory')
     calib_url = 'file://' + LaunchConfig('calibration_directory').perform(context) + '/'
 
-    exp_ctrl_names = [cam + '.exposure_controller' for cam in camera_list.keys()]
+    exp_ctrl_names = [cam + '.exposure_controller' for cam in camera_list]
     driver_parameters = {
         'cameras': list(camera_list.keys()),
         'exposure_controllers': exp_ctrl_names,
@@ -113,7 +110,8 @@ def make_parameters(context):
     return driver_parameters
 
 
-def launch_setup(context, *args, **kwargs):
+def launch_setup(context): #, *args, **kwargs):
+    """Create multiple camera."""
     container = ComposableNodeContainer(
         name='cam_sync_container',
         namespace='',
@@ -134,6 +132,7 @@ def launch_setup(context, *args, **kwargs):
 
 
 def generate_launch_description():
+    """Launch cameras"""
     return LaunchDescription(
         [
             LaunchArg(

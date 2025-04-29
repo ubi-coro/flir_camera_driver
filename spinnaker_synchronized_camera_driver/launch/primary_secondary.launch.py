@@ -12,16 +12,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-#
 
-# Example file for two Blackfly S cameras where the primary camera triggers
-# the secondary via its 3.3V signaling interface.
-#
-# One of them creates a master controller, the other one a follower. The exposure
-# parameters are determined by the master. This is a useful setup for e.g. a
-# synchronized stereo camera.
-#
+"""
+Example file for two Blackfly S cameras where the primary camera triggers
+the secondary via its 3.3V signaling interface.
+
+One of them creates a master controller, the other one a follower. The exposure
+parameters are determined by the master. This is a useful setup for e.g. a
+synchronized stereo camera.
+"""
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument as LaunchArg
 from launch.actions import OpaqueFunction
@@ -94,7 +94,7 @@ def make_parameters(context):
     pd = LaunchConfig('camera_parameter_directory')
     calib_url = 'file://' + LaunchConfig('calibration_directory').perform(context) + '/'
 
-    exp_ctrl_names = [cam + '.exposure_controller' for cam in camera_list.keys()]
+    exp_ctrl_names = [cam + '.exposure_controller' for cam in camera_list]
     driver_parameters = {
         'cameras': list(camera_list.keys()),
         'exposure_controllers': exp_ctrl_names,
@@ -126,7 +126,8 @@ def make_parameters(context):
     return driver_parameters
 
 
-def launch_setup(context, *args, **kwargs):
+def launch_setup(context): #, *args, **kwargs):
+    """Create multiple camera."""
     container = ComposableNodeContainer(
         name='cam_sync_container',
         namespace='',
@@ -147,6 +148,7 @@ def launch_setup(context, *args, **kwargs):
 
 
 def generate_launch_description():
+    """Launch cameras"""
     return LaunchDescription(
         [
             LaunchArg(

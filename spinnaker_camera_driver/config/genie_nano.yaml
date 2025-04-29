@@ -1,0 +1,24 @@
+parameters:
+  # -------- image format (safe default)
+  - name: pixel_format
+    type: enum
+    # Check available values with SpinView. Not all are supported by ROS!
+    # Some formats are e.g. "Mono8", "BayerRG8", "BGR8", "BayerRG16"
+    # default is "BayerRG8"
+    node: ImageFormatControl/PixelFormat
+
+  # -------- basic exposure and gain
+  - name: gain_auto
+    type: enum
+    node: AnalogControl/GainAuto
+  - name: gain
+    type: float
+    node: AnalogControl/Gain
+
+  # -------- image geometry
+  - name: image_width
+    type: int
+    node: ImageFormatControl/Width
+  - name: image_height
+    type: int
+    node: ImageFormatControl/Height
